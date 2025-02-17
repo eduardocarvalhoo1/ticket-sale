@@ -1,3 +1,5 @@
+const ticketService = require('../services/ticketServices');
+
 exports.createTicket = async (req, res) => {
     try {
         const ticket = req.body;
@@ -109,11 +111,13 @@ exports.getUserTickets = async (req, res) => {
         }
 
         const tickets = await ticketService.getUserTickets(userId);
+        console.log("Tickets enviados para Mustache:", tickets);
 
-        return res.status(200).json({
+        /*return res.status(200).json({
             message: "tickets loaded successfully",
-            error: error.message
-        });
+            data: tickets,
+        });*/
+        return res.render('tickets', { tickets });
     } 
     catch (error) {
         return res.status(500).json({

@@ -76,7 +76,11 @@ exports.getUserTickets = async (userId) => {
     try {
         const tickets = await UserTickets.findAll({
             where:{userId},
-            include: [{model: Tickets, as: 'ticket'}]
+            include: [{
+                model: Tickets, 
+                as: 'ticket',
+                attributes: ['id', 'name', 'price']
+            }]
         });
         return tickets;
     } 

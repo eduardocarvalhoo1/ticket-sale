@@ -39,7 +39,7 @@ router.post("/login", async (req, res) => {
     // Armazna token no cookie
     res.cookie("token", token);
 
-    res.redirect("/tickets");
+    res.redirect(`/tickets/${user.id}`);
 });
 
 
