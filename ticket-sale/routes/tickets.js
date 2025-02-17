@@ -3,6 +3,7 @@ const { Tickets } = require('../models');
 const auth = require('../controllers/auth');
 const { where } = require('sequelize');
 const router = express.Router();
+const ticketServices = require('../services/ticketServices');
 
 router.post("/", auth.validAcess, async (req, res) => {
 
@@ -62,6 +63,7 @@ router.post("/buy", auth.validAcess, async (req, res) => {
     try {
         const {ticketId, quantity} = req.body;
         const userId = req.user.id;
+        console.log('User ID:', userId);
 
         if (!ticketId || !quantity || parseInt(quantity) <= 0) {
             return res.status(400).json({ error: "Invalid ticketId or quantity" });

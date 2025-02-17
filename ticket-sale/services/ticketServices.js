@@ -48,6 +48,8 @@ exports.buyTicket = async (userId, ticketId, quantity) => {
         if (!ticket) {
             throw new Error("Ticket not found");
         }
+        console.log('Quantidade em estoque:', ticket.quantity); // Verifique a quantidade em estoque
+        console.log('Quantidade solicitada:', quantity); // Ver
 
         if (ticket.quantity < quantity) {
             throw new Error("Not enough tickets in stock");

@@ -33,7 +33,8 @@ router.post("/login", async (req, res) => {
     if (!user || user.password != password) {
         return res.status(403).json({ logged: false, message: "Invalid user or password"});
     }
-    let token = jwt.sign({user: user.username, role: user.role}, '53nh@', { expiresIn: '30m'});
+    //let token = jwt.sign({user: user.username, role: user.role}, '53nh@', { expiresIn: '30m'});
+    let token = jwt.sign({ id: user.id, username: user.username, role: user.role }, '53nh@', { expiresIn: '30m' });
 
     // Armazna token no cookie
     res.cookie("token", token);

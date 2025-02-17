@@ -14,6 +14,7 @@ const Users = require('./Users')(sequelize, DataTypes);
 Users.hasMany(UserTickets, { foreignKey: "userId" });
 UserTickets.belongsTo(Users, { foreignKey: "userId" });
 
+
 module.exports = {
     sequelize,
     Tickets,
