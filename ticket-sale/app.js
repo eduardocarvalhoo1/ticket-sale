@@ -6,6 +6,9 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var authRouter = require('./routes/auth');
+var ticketsRouter = require('./routes/tickets');
+const { sequelize } = require("./models");
 
 var app = express();
 
@@ -26,6 +29,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/auth', authRouter);
+app.use('/tickets', ticketsRouter);
+
+sequelize.sync({ alter: true })
+    .then(() => {
+        console.log('Banco de dados sincronizado');
+    })
+    .catch((error) => {
+        console.error('Erro ao sincronizar banco de dados: ', error);
+    })
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

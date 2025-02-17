@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de Compras</title>
+</head>
+<body>
+    <h2>Histórico de Compras</h2>
+    
+    {{#tickets}}
+        <div>
+            <p><strong>ID:</strong> {{id}}</p>
+            <p><strong>Nome:</strong> {{name}}</p>
+            <p><strong>Preço:</strong> R$ {{price}}</p>
+            <hr>
+        </div>
+    {{/tickets}}
+
+    {{^tickets}}
+        <p>Nenhum ingresso encontrado.</p>
+    {{/tickets}}
+
+</body>
+</html>
